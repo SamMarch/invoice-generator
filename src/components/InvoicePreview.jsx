@@ -1,4 +1,10 @@
+import { usePDF } from 'react-to-pdf'
+
 function InvoicePreview({ invoiceData }) {
+  const { toPDF, targetRef } = usePDF({
+    filename: 'invoice.pdf',
+    page: { format: 'a4' }
+  })
   const {
     businessName, businessEmail, businessPhone, businessAddress,
     clientName, clientEmail, clientAddress,
@@ -19,7 +25,14 @@ function InvoicePreview({ invoiceData }) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-10 text-sm text-gray-800 sticky top-6">
+    <div className="sticky top-6">
+      <button
+        onClick={() => toPDF()}
+        className="w-full mb-4 bg-gray-800 text-white py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors cursor-pointer"
+      >
+        Export PDF
+      </button>
+      <div ref={targetRef} className="bg-white rounded-lg shadow-sm p-10 text-sm text-gray-800">
       {/* Header */}
       <div className="flex justify-between items-start mb-10">
         <div>
@@ -103,6 +116,7 @@ function InvoicePreview({ invoiceData }) {
           <p className="text-gray-600 whitespace-pre-line">{notes}</p>
         </div>
       )}
+      </div>
     </div>
   )
 }
