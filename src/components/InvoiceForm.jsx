@@ -1,6 +1,6 @@
 import LineItems from './LineItems'
 
-function InvoiceForm({ invoiceData, setInvoiceData }) {
+function InvoiceForm({ invoiceData, setInvoiceData, resetInvoice }) {
   const handleChange = (field, value) => {
     setInvoiceData(prev => ({ ...prev, [field]: value }))
   }
@@ -142,6 +142,17 @@ function InvoiceForm({ invoiceData, setInvoiceData }) {
           onChange={e => handleChange('notes', e.target.value)}
         />
       </section>
+      <button
+        type="button"
+        onClick={() => {
+          if (window.confirm('Start a new invoice? All current data will be cleared.')) {
+            resetInvoice()
+          }
+        }}
+        className="w-full mt-2 bg-red-600 text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors cursor-pointer"
+      >
+        New Invoice
+      </button>
     </div>
   )
 }
