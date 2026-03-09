@@ -51,8 +51,9 @@ function LineItems({ lineItems, setLineItems }) {
                 type="number"
                 className={inputClass}
                 min="0"
-                value={item.quantity}
-                onChange={e => updateItem(item.id, 'quantity', Number(e.target.value))}
+                placeholder="0"
+                value={item.quantity === 0 ? '' : item.quantity}
+                onChange={e => updateItem(item.id, 'quantity', parseInt(e.target.value) || 0)}
               />
             </div>
             <div>
@@ -62,14 +63,15 @@ function LineItems({ lineItems, setLineItems }) {
                 className={inputClass}
                 min="0"
                 step="0.01"
-                value={item.rate}
-                onChange={e => updateItem(item.id, 'rate', Number(e.target.value))}
+                placeholder="0.00"
+                value={item.rate === 0 ? '' : item.rate}
+                onChange={e => updateItem(item.id, 'rate', parseFloat(e.target.value) || 0)}
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-1">Total</label>
               <div className="px-3 py-3 bg-gray-50 rounded-lg text-base font-medium text-gray-700">
-                ${(item.quantity * item.rate).toFixed(2)}
+                ${((item.quantity || 0) * (item.rate || 0)).toFixed(2)}
               </div>
             </div>
           </div>
