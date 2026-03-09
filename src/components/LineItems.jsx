@@ -18,71 +18,67 @@ function LineItems({ lineItems, setLineItems }) {
     setLineItems(lineItems.filter(item => item.id !== id))
   }
 
-  const inputClass = 'w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+  const inputClass = 'w-full border border-gray-300 rounded-lg px-3 py-3 text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
 
   return (
-    <div>
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="text-left text-gray-600 border-b border-gray-200">
-            <th className="pb-2 font-medium">Description</th>
-            <th className="pb-2 font-medium w-20">Qty</th>
-            <th className="pb-2 font-medium w-28">Rate ($/hr)</th>
-            <th className="pb-2 font-medium w-24 text-right">Total</th>
-            <th className="pb-2 w-10"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {lineItems.map(item => (
-            <tr key={item.id} className="border-b border-gray-100">
-              <td className="py-2 pr-2">
-                <input
-                  type="text"
-                  className={inputClass}
-                  placeholder="Item description"
-                  value={item.description}
-                  onChange={e => updateItem(item.id, 'description', e.target.value)}
-                />
-              </td>
-              <td className="py-2 pr-2">
-                <input
-                  type="number"
-                  className={inputClass}
-                  min="0"
-                  value={item.quantity}
-                  onChange={e => updateItem(item.id, 'quantity', Number(e.target.value))}
-                />
-              </td>
-              <td className="py-2 pr-2">
-                <input
-                  type="number"
-                  className={inputClass}
-                  min="0"
-                  step="0.01"
-                  value={item.rate}
-                  onChange={e => updateItem(item.id, 'rate', Number(e.target.value))}
-                />
-              </td>
-              <td className="py-2 text-right font-medium text-gray-700">
+    <div className="space-y-4">
+      {lineItems.map(item => (
+        <div key={item.id} className="border border-gray-200 rounded-lg p-4 space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-medium text-gray-500">Line Item</span>
+            <button
+              type="button"
+              onClick={() => removeItem(item.id)}
+              className="text-gray-400 hover:text-red-500 text-sm font-medium cursor-pointer"
+            >
+              Remove
+            </button>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">Description</label>
+            <input
+              type="text"
+              className={inputClass}
+              placeholder="Item description"
+              value={item.description}
+              onChange={e => updateItem(item.id, 'description', e.target.value)}
+            />
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">Qty</label>
+              <input
+                type="number"
+                className={inputClass}
+                min="0"
+                value={item.quantity}
+                onChange={e => updateItem(item.id, 'quantity', Number(e.target.value))}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">Rate ($/hr)</label>
+              <input
+                type="number"
+                className={inputClass}
+                min="0"
+                step="0.01"
+                value={item.rate}
+                onChange={e => updateItem(item.id, 'rate', Number(e.target.value))}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">Total</label>
+              <div className="px-3 py-3 bg-gray-50 rounded-lg text-base font-medium text-gray-700">
                 ${(item.quantity * item.rate).toFixed(2)}
-              </td>
-              <td className="py-2 text-center">
-                <button
-                  type="button"
-                  onClick={() => removeItem(item.id)}
-                  className="text-gray-400 hover:text-red-500 text-lg leading-none"
-                >
-                  &times;
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
       <button
         type="button"
         onClick={addItem}
-        className="mt-3 text-sm text-blue-600 hover:text-blue-800 font-medium"
+        className="w-full py-3 text-base text-indigo-500 hover:text-indigo-700 font-medium border-2 border-dashed border-gray-300 hover:border-indigo-300 rounded-lg transition-colors cursor-pointer"
       >
         + Add Line Item
       </button>

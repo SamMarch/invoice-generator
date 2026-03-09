@@ -9,16 +9,14 @@ function InvoiceForm({ invoiceData, setInvoiceData, resetInvoice }) {
     setInvoiceData(prev => ({ ...prev, lineItems }))
   }
 
-  const inputClass = 'w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
+  const inputClass = 'w-full border border-gray-300 rounded-lg px-3 py-3 text-base focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
   const labelClass = 'block text-sm font-medium text-gray-600 mb-1'
 
   return (
-    <div className="space-y-8">
-      <h1 className="text-2xl font-bold text-gray-800">Invoice Generator</h1>
-
+    <div className="space-y-6">
       {/* Your Business */}
-      <section className="bg-white rounded-lg p-6 shadow-sm space-y-4">
-        <h2 className="text-lg font-semibold text-gray-700">Your Business</h2>
+      <section className="bg-white rounded-lg p-4 lg:p-6 shadow-sm space-y-4">
+        <h2 className="text-lg font-semibold text-indigo-600">Your Business</h2>
         <div>
           <label className={labelClass}>Business Name</label>
           <input
@@ -28,7 +26,7 @@ function InvoiceForm({ invoiceData, setInvoiceData, resetInvoice }) {
             onChange={e => handleChange('businessName', e.target.value)}
           />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Email</label>
             <input
@@ -60,8 +58,8 @@ function InvoiceForm({ invoiceData, setInvoiceData, resetInvoice }) {
       </section>
 
       {/* Bill To */}
-      <section className="bg-white rounded-lg p-6 shadow-sm space-y-4">
-        <h2 className="text-lg font-semibold text-gray-700">Bill To</h2>
+      <section className="bg-white rounded-lg p-4 lg:p-6 shadow-sm space-y-4">
+        <h2 className="text-lg font-semibold text-indigo-600">Bill To</h2>
         <div>
           <label className={labelClass}>Client Name</label>
           <input
@@ -92,8 +90,8 @@ function InvoiceForm({ invoiceData, setInvoiceData, resetInvoice }) {
       </section>
 
       {/* Invoice Details */}
-      <section className="bg-white rounded-lg p-6 shadow-sm space-y-4">
-        <h2 className="text-lg font-semibold text-gray-700">Invoice Details</h2>
+      <section className="bg-white rounded-lg p-4 lg:p-6 shadow-sm space-y-4">
+        <h2 className="text-lg font-semibold text-indigo-600">Invoice Details</h2>
         <div>
           <label className={labelClass}>Invoice Number</label>
           <input
@@ -103,7 +101,7 @@ function InvoiceForm({ invoiceData, setInvoiceData, resetInvoice }) {
             onChange={e => handleChange('invoiceNumber', e.target.value)}
           />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Issue Date</label>
             <input
@@ -126,14 +124,14 @@ function InvoiceForm({ invoiceData, setInvoiceData, resetInvoice }) {
       </section>
 
       {/* Line Items */}
-      <section className="bg-white rounded-lg p-6 shadow-sm space-y-4">
-        <h2 className="text-lg font-semibold text-gray-700">Line Items</h2>
+      <section className="bg-white rounded-lg p-4 lg:p-6 shadow-sm space-y-4">
+        <h2 className="text-lg font-semibold text-indigo-600">Line Items</h2>
         <LineItems lineItems={invoiceData.lineItems} setLineItems={setLineItems} />
       </section>
 
       {/* Notes */}
-      <section className="bg-white rounded-lg p-6 shadow-sm space-y-4">
-        <h2 className="text-lg font-semibold text-gray-700">Notes</h2>
+      <section className="bg-white rounded-lg p-4 lg:p-6 shadow-sm space-y-4">
+        <h2 className="text-lg font-semibold text-indigo-600">Notes</h2>
         <textarea
           className={inputClass}
           rows={4}
@@ -142,6 +140,7 @@ function InvoiceForm({ invoiceData, setInvoiceData, resetInvoice }) {
           onChange={e => handleChange('notes', e.target.value)}
         />
       </section>
+
       <button
         type="button"
         onClick={() => {
@@ -149,7 +148,7 @@ function InvoiceForm({ invoiceData, setInvoiceData, resetInvoice }) {
             resetInvoice()
           }
         }}
-        className="w-full mt-2 bg-red-600 text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors cursor-pointer"
+        className="w-full bg-red-600 text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors cursor-pointer text-base"
       >
         New Invoice
       </button>
