@@ -6,7 +6,12 @@
       "Bash(rm:*)",
       "Bash(cp:*)",
       "Bash(npm install:*)",
-      "Bash(timeout 10 npm run:*)"
+      "Bash(timeout 10 npm run:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(npx vite:*)",
+      "Bash(grep:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)"
     ]
   }
 }
